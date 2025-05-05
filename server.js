@@ -17,9 +17,9 @@ const db = mysql.createConnection({
     user: 'root', // Replace with your MySQL username
     password: 'Mayyra21aaaAngge', // Replace with your MySQL password
     database: 'preorderpal' // Replace with your database name
-  waitForConnections: true,
-  connectionLimit: 10,
-  queueLimit: 0
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
 });
 // Example query using the pool
 pool.query('SELECT * FROM yourTable', (err, results) => {
