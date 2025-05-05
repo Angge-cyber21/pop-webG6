@@ -17,15 +17,27 @@ const db = mysql.createConnection({
     user: 'root', // Replace with your MySQL username
     password: 'Mayyra21aaaAngge', // Replace with your MySQL password
     database: 'preorderpal' // Replace with your database name
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
-
-// Connect to MySQL
-connection.connect((err) => {
+// Example query using the pool
+pool.query('SELECT * FROM yourTable', (err, results) => {
   if (err) {
-    console.error('Error connecting to the database:', err);
+    console.error('Error executing query:', err);
     return;
   }
-  console.log('Connected to the database!');
+  console.log('Query results:', results);
+});
+// Close the pool when done
+process.on('SIGINT', () => {
+  pool.end((err) => {
+    if (err) {
+      console.error('Error closing the pool:', err);
+    }
+    console.log('Connection pool closed.');
+    process.exit();
+  });
 });
 
 // Root route
