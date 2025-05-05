@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Desserts Menu - PreOrder Pal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #004080;
+            color: white;
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .left {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .left img.logo {
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar .left .site-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .dessert-section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .dessert-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .dessert-button {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            text-align: center;
+            width: 140px;
+            background-color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 10px;
+        }
+
+        .dessert-button.selected {
+            box-shadow: 0 0 15px 3px #004080;
+            transform: scale(1.05);
+        }
+
+        .dessert-button img {
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .dessert-button div {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #004080;
+        }
+
+        .price-display {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #004080;
+            text-align: center;
+        }
+
+        .continue-button {
+            background-color: #004080;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto 40px auto;
+        }
+
+        .continue-button:disabled {
+            background-color: #7a9cc6;
+            cursor: not-allowed;
+        }
+
+        .continue-button:hover:not(:disabled) {
+            background-color: #003366;
+        }
+
+        @media (max-width: 768px) {
+            .dessert-container {
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="left">
+            <img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png" alt="Logo" class="logo" />
+            <div class="site-name">PreOrder Pal</div>
+        </div>
+    </nav>
+
+    <section class="dessert-section">
+        <h1 style="text-align:center; color:#004080; margin-bottom: 30px;">Choose Your Dessert</h1>
+        <div class="dessert-container" id="dessertContainer">
+            <div class="dessert-button" data-dessert="Coffee Jelly" data-price="60">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Coffee_jelly_in_a_glass.jpg" alt="Coffee Jelly" />
+                <div>Coffee Jelly</div>
+                <div>₱60</div>
+            </div>
+            <div class="dessert-button" data-dessert="Leche Flan" data-price="80">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7a/Leche_flan.jpg" alt="Leche Flan" />
+                <div>Leche Flan</div>
+                <div>₱80</div>
+            </div>
+            <div class="dessert-button" data-dessert="Fruit Salad" data-price="70">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Fruit_Salad_in_a_bowl.jpg" alt="Fruit Salad" />
+                <div>Fruit Salad</div>
+                <div>₱70</div>
+            </div>
+        </div>
+
+        <div class="price-display" id="priceDisplay">Price: ₱0</div>
+
+        <button class="continue-button" id="continueButton" disabled>Continue</button>
+    </section>
+
+    <script>
+        const dessertButtons = document.querySelectorAll('.dessert-button');
+        const priceDisplay = document.getElementById('priceDisplay');
+        const continueButton = document.getElementById('continueButton');
+
+        let selectedDessert = null;
+        let selectedPrice = 0;
+
+        dessertButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Deselect all buttons
+                dessertButtons.forEach(btn => btn.classList.remove('selected'));
+                // Select clicked button
+                button.classList.add('selected');
+                selectedDessert = button.getAttribute('data-dessert');
+                selectedPrice = button.getAttribute('data-price');
+                priceDisplay.textContent = `Price: ₱${selectedPrice}`;
+                continueButton.disabled = false;
+            });
+        });
+
+        continueButton.addEventListener('click', () => {
+            if (selectedDessert) {
+                alert(`You selected ${selectedDessert} - Price: ₱${selectedPrice}`);
+                // Here you can add code to proceed to the next step
+            }
+        });
+    </script>
+</body>
+
+</html>

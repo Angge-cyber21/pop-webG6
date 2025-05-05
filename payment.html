@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PreOrder Pal - Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        main {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form textarea {
+            width: 100%;
+            padding: 8px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .payment-method {
+            flex: 1 1 45%;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            padding: 10px;
+            transition: border-color 0.3s ease;
+            background-color: #f0f0f0;
+        }
+
+        .payment-method.selected {
+            border-color: #004080;
+            background-color: #d0e1ff;
+        }
+
+        .payment-method img {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            object-fit: contain;
+        }
+
+        .payment-method label {
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .continue-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #004080;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .continue-button:hover {
+            background-color: #003060;
+        }
+
+        .return-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #888888;
+            color: white;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .return-button:hover {
+            background-color: #666666;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 15px 10px;
+            margin-top: auto;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>PreOrder Pal - Payment</header>
+    <main>
+        <form id="payment-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your full name" required />
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Your address" rows="3" required></textarea>
+
+            <label>Choose Payment Method</label>
+            <div class="payment-methods">
+                <div class="payment-method" data-method="gcash" tabindex="0">
+                    <input type="radio" id="gcash" name="payment-method" value="gcash" hidden />
+                    <img src="https://framerusercontent.com/images/oxd8cAOU6GspubnNeZ9cGb29A.png" alt="GCash" />
+                    <label for="gcash">GCash</label>
+                </div>
+                <div class="payment-method" data-method="paypal" tabindex="0">
+                    <input type="radio" id="paypal" name="payment-method" value="paypal" hidden />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" />
+                    <label for="paypal">PayPal</label>
+                </div>
+                <div class="payment-method" data-method="credit-card" tabindex="0">
+                    <input type="radio" id="credit-card" name="payment-method" value="credit-card" hidden />
+                    <img src="https://media.gettyimages.com/id/1779996890/photo/bath-united-kingdom-in-this-photo-illustration-the-visa-mastercard-and-american-express-logos.jpg?s=612x612&w=gi&k=20&c=Q-ZrjkJtTiJG8OsS0Oqqqya8ElLsf-fzdZ15gJBpNts=" alt="Credit Card" />
+                    <label for="credit-card">Credit Card</label>
+                </div>
+                <div class="payment-method" data-method="cash" tabindex="0">
+                    <input type="radio" id="cash" name="payment-method" value="cash" hidden />
+                    <img src="https://images.esquiremag.ph/esquiremagph/images/2024/12/20/bank-note-esquire-main-image-1734674139.jpg" alt="Cash" />
+                    <label for="cash">Cash</label>
+                </div>
+            </div>
+
+            <button type="submit" class="continue-button">Continue</button>
+            <button type="button" class="return-button" onclick="window.location.href='mainpage.html'">Return</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 PreOrder Pal. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Script to handle payment method selection styling
+        const paymentMethods = document.querySelectorAll('.payment-method');
+        paymentMethods.forEach(method => {
+            method.addEventListener('click', () => {
+                paymentMethods.forEach(m => m.classList.remove('selected'));
+                method.classList.add('selected');
+                method.querySelector('input[type="radio"]').checked = true;
+            });
+            method.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    method.click();
+                }
+            });
+        });
+
+        // Handle form submission
+        document.getElementById('payment-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = this.name.value.trim();
+            const address = this.address.value.trim();
+            const paymentMethod = this.querySelector('input[name="payment-method"]:checked');
+            if (!paymentMethod) {
+                alert('Please select a payment method.');
+                return;
+            }
+            alert(`Thank you, ${name}! Your payment method (${paymentMethod.value}) has been processed.`);
+            // Here you can add actual payment processing logic
+        });
+    </script>
+</body>
+
+</html>
