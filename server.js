@@ -18,7 +18,7 @@ const db = mysql.createConnection({
     password: 'Mayyra21aaaAngge', // Replace with your MySQL password
     database: 'preorderpal' // Replace with your database name
     waitForConnections: true,
-    connectionLimit: 10,
+     connectionLimit: 10,
     queueLimit: 0
 });
 // Example query using the pool
