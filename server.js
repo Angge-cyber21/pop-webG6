@@ -13,19 +13,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL connection
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: '127.0.0.1',
     user: 'root', // Replace with your MySQL username
     password: 'Mayyra21aaaAngge', // Replace with your MySQL password
     database: 'preorderpal' // Replace with your database name
 });
 
 // Connect to MySQL
-db.connect(err => {
-    if (err) {
-        console.error('Database connection failed: ' + err.stack);
-        return;
-    }
-    console.log('Connected to database.');
+connection.connect((err) => {
+  if (err) {
+    console.error('Error connecting to the database:', err);
+    return;
+  }
+  console.log('Connected to the database!');
 });
 
 // Root route
