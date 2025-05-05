@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, <span id="username"></span>!</h1>
+        <p>This is your main page after logging in.</p>
+        <a href="logout.html">Logout</a>
+    </div>
+    <script>
+        // Assuming the username is stored in local storage after login
+        const username = localStorage.getItem('username');
+        document.getElementById('username').textContent = username ? username : 'Guest';
+    </script>
+</body>
+</html>
