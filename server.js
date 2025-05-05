@@ -1,8 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
-const cors = require('cors');
-
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -16,7 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL connection
 const pool = mysql.createPool({
-  host: 'mysql.railway.internal',
+  host: 'switchyard.proxy.rlwy.net',
+  port: 23306,
   user: 'root',
   password: 'pzkHaVmorxnSHWxzpIYNLWPBWaultzTU',
   database: 'railway',
