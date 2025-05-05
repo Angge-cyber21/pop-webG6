@@ -74,7 +74,7 @@ app.post('/signup', (req, res) => {
     }
     res.status(201).send('User registered successfully');
   });
-});});
+});
 
 // Start the server
 app.listen(port, () => {
