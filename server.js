@@ -65,39 +65,16 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Frontend: Sign Up request
-
-const signupForm = document.getElementById('signupForm');  // Assuming you have a form with this ID
-
-signupForm.addEventListener('submit', (e) => {
-  e.preventDefault();  // Prevent the form from reloading the page
-  
-  // Get user inputs
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-
-  // Send the signup request to the backend
-  fetch('https://pop-webg6.onrender.com', {  // Replace with your backend URL here
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      username: username,
-      password: password
-    })
-  })
-  .then(res => res.json())  // Assuming your backend returns JSON
-  .then(data => {
-    if (data === 'User registered successfully') {
-      console.log('Signup successful');
-      // You can add any success message here, or redirect the user to the login page
-    } else {
-      console.log('Signup failed', data);
+// Signup endpoint (backend)
+app.post('/signup', (req, res) => {
+  const { username, password } = req.body;
+  pool.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
     }
-  })
-  .catch(err => console.error('Error during signup:', err));
-});
+    res.status(201).send('User registered successfully');
+  });
+});});
 
 // Start the server
 app.listen(port, () => {
