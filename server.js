@@ -12,13 +12,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL connection
-const db = mysql.createConnection({
+const pool = mysql.createPool({
     host: '127.0.0.1',
     user: 'root', // Replace with your MySQL username
     password: 'Mayyra21aaaAngge', // Replace with your MySQL password
-    database: 'preorderpal' // Replace with your database name
+    database: 'preorderpal', // Replace with your database name
     waitForConnections: true,
-     connectionLimit: 10,
+    connectionLimit: 10,
     queueLimit: 0
 });
 // Example query using the pool
