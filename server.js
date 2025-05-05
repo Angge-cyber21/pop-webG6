@@ -7,7 +7,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://pop-webg6.onrender.com', // or specify your frontend URL e.g., 'https://yourfrontend.onrender.com'
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
