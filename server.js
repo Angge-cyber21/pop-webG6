@@ -12,17 +12,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL connection
-
-   const pool = mysql.createPool({
-       host: '127.0.0.1',
-       user: 'root', // Replace with your MySQL username
-       password: 'Mayyra21aaaAngge', // Replace with your MySQL password
-       database: 'preorderpal', // Replace with your database name
-       waitForConnections: true,
-       connectionLimit: 10,
-       queueLimit: 0,
-       connectTimeout: 10000 // Increase timeout to 10 seconds
+const pool = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'Mayyra21aaaAngge',
+  database: 'preorderpal',
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  connectTimeout: 10000
 });
+
 // Example query using the pool
 pool.query('SELECT * FROM yourTable', (err, results) => {
   if (err) {
@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 // Login route
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
-    db.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
+    pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
         if (err) {
             console.error("DB error:", err);
             return res.status(500).send(err);
@@ -63,16 +63,16 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Signup route
 app.post('/signup', (req, res) => {
     const { username, password } = req.body;
-    db.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err, results) => {
+    pool.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err, results) => {
         if (err) {
             return res.status(500).send(err);
         }
-        res.status(201).send('User  registered successfully');
+        res.status(201).send('User registered successfully');
     });
 });
+
 
 // Start the server
 app.listen(port, () => {
