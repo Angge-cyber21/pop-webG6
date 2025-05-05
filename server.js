@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // MySQL connection
 const pool = mysql.createPool({
-  host: 'localhost',
+  host: mysql.railway.internal',
   user: 'root',
-  password: 'Mayyra21aaaAngge',
-  database: 'preorderpal',
+  password: pzkHaVmorxnSHWxzpIYNLWPBWaultzTU',
+  database: 'railway',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
