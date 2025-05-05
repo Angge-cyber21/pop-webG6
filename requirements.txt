@@ -1,4 +1,0 @@
-mysqlclient
-pip install mysql-connector-python python-dotenv
-mysql-connector-python
-python-dotenv
