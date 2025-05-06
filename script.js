@@ -22,10 +22,11 @@ document.addEventListener('DOMContentLoaded', function () {
             const username = usernameInput.value;
             const password = passwordInput.value;
 
+            // NEW (works, uses live backend)
             fetch('https://pop-webg6.onrender.com/login', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, password })
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ username, password }),
             })
             .then(response => {
                 if (!response.ok) throw new Error("Login failed.");
