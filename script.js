@@ -46,7 +46,7 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
     const newUsername = document.getElementById('newUsername').value;
     const newPassword = document.getElementById('newPassword').value;
 
-    fetch('http://localhost:3000/signup', {
+    fetch('https://pop-webg6.onrender.com/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
