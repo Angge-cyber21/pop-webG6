@@ -7,10 +7,11 @@ const port = process.env.PORT || 3000;
 // Middleware
 const cors = require('cors');
 app.use(cors({
-  origin: 'https://pop-webg6.onrender.com', // or specify your frontend URL e.g., 'https://yourfrontend.onrender.com'
+  origin: 'https://angge-cyber21.github.io'
 }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 // MySQL connection
 const pool = mysql.createPool({
@@ -77,6 +78,6 @@ app.post('/signup', (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(process.env.PORT || 3000, () => {
+  console.log('Server running');
 });
