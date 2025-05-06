@@ -53,11 +53,13 @@ app.get('/', (req, res) => {
 // Login route
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
+    console.log('Received login:', username, password); // Add this log
     pool.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
         if (err) {
             console.error("DB error:", err);
             return res.status(500).send(err);
         }
+        console.log('Query Results:', results); // Add this log
         if (results.length > 0) {
             res.status(200).send('Login successful');
         } else {
@@ -68,14 +70,19 @@ app.post('/login', (req, res) => {
 
 // Signup endpoint (backend)
 app.post('/signup', (req, res) => {
-  const { username, password } = req.body;
-  pool.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err, results) => {
-    if (err) {
-      return res.status(500).send(err);
-    }
-    res.status(201).send('User registered successfully');
-  });
+    const { username, password } = req.body;
+    console.log('Received signup:', username, password); // Add this log
+    pool.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err, results) => {
+        if (err) {
+            console.error('Error during signup:', err); // Log the error
+            return res.status(500).send(err);
+        }
+        console.log('Signup success:', results); // Add this log
+        res.status(201).send('User registered successfully');
+    });
 });
+
+
 
 // Start the server
 app.listen(process.env.PORT || 3000, () => {
