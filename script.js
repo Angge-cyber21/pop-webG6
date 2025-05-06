@@ -12,39 +12,44 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById("loginContainer").style.display = "block";
     });
 
-    // Handle Login
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        const usernameInput = document.getElementById("username");
-        const passwordInput = document.getElementById("password");
+// Handle Login
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
 
-        if (usernameInput && passwordInput) {
-            const username = usernameInput.value;
-            const password = passwordInput.value;
+    if (usernameInput && passwordInput) {
+        const username = usernameInput.value;
+        const password = passwordInput.value;
 
-            // NEW (works, uses live backend)
-            fetch('https://pop-webg6.onrender.com/login', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ username, password }),
-            })
-            .then(response => {
-                if (!response.ok) throw new Error("Login failed.");
-                return response.text();
-            })
-            .then(data => {
-                localStorage.setItem('username', username);
-                window.location.href = 'mainpage.html';
-            })
-            .catch(error => {
-                alert(error.message);
-                console.error('Login Error:', error);
-            });
-        } else {
-            console.error('Login input elements not found');
-            alert('Login input elements not found');
-        }
-    });
+        // Log the input values
+        console.log('Username Input:', username);
+        console.log('Password Input:', password);
+
+        // NEW (works, uses live backend)
+        fetch('https://pop-webg6.onrender.com/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ username, password }),
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("Login failed.");
+            return response.text();
+        })
+        .then(data => {
+            localStorage.setItem('username', username);
+            window.location.href = 'mainpage.html';
+        })
+        .catch(error => {
+            alert(error.message);
+            console.error('Login Error:', error);
+        });
+    } else {
+        console.error('Login input elements not found');
+        alert('Login input elements not found');
+    }
+});
+
 
     // Handle Signup
     document.getElementById('signupForm').addEventListener('submit', function(event) {
