@@ -3,10 +3,10 @@ const signupForm = document.getElementById('signupForm');
 
 signupForm.addEventListener('submit', (e) => {
   e.preventDefault();  // Prevent the form from refreshing the page
-  
+
   // Get the user input values
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
+  const username = document.getElementById('newUsername').value;
+  const password = document.getElementById('newPassword').value;
 
   // Send the signup request to the backend
   fetch('https://pop-api.onrender.com/signup', {  // Your deployed backend URL
@@ -19,7 +19,14 @@ signupForm.addEventListener('submit', (e) => {
       password: password
     })
   })
-  .then(res => res.text())  // Handle response as text (as your server returns text)
-  .then(data => console.log(data))  // Log success message or handle it as needed
-  .catch(err => console.error('Error:', err));  // Log any errors
+  .then(res => res.text())  // Handle response as text
+  .then(data => {
+    alert(data);  // Show message to user
+    localStorage.setItem('username', username);  // Store username
+    window.location.href = 'window.location.href = 'mainpage.html'; // Redirect to main page
+  })
+  .catch(err => {
+    console.error('Signup error:', err);
+    alert('Signup failed. Please try again.');
+  });
 });
