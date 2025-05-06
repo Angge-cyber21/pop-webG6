@@ -11,29 +11,29 @@ signupForm.addEventListener('submit', (e) => {
   if (usernameInput && passwordInput) {
       const username = usernameInput.value;
       const password = passwordInput.value;
+
+      // Send the signup request to the backend
+      fetch('https://pop-api.onrender.com/signup', {  // Your deployed backend URL
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        })
+      })
+      .then(res => res.text())  // Handle response as text
+      .then(data => {
+        alert(data);  // Show message to user
+        localStorage.setItem('username', username);  // Store username
+        window.location.href = 'mainpage.html'; // Redirect to main page
+      })
+      .catch(err => {
+        console.error('Signup error:', err);
+        alert('Signup failed. Please try again.');
+      });
   } else {
       console.error('Input elements not found');
   }
-     
-  // Send the signup request to the backend
-  fetch('https://pop-api.onrender.com/signup', {  // Your deployed backend URL
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      username: username,
-      password: password,
-    })
-  })
-  .then(res => res.text())  // Handle response as text
-  .then(data => {
-    alert(data);  // Show message to user
-    localStorage.setItem('username', username);  // Store username
-    window.location.href = 'mainpage.html'; // Redirect to main page
-  })
-  .catch(err => {
-    console.error('Signup error:', err);
-    alert('Signup failed. Please try again.');
-  });
 });
