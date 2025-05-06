@@ -16,8 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const pool = mysql.createPool({
   host: 'switchyard.proxy.rlwy.net',
   port: 23306,
-  user: 'POP',
-  password: 'popweb',
+  user: 'root',
+  password: 'Mayyra21aaaAngge',
   database: 'railway',
   waitForConnections: true,
   connectionLimit: 10,
