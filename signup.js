@@ -28,9 +28,9 @@ signupForm.addEventListener('submit', (e) => {
   })
   .then(res => res.text())  // Handle response as text
   .then(data => {
-  alert(data);  // Show message to user
-  localStorage.setItem('username', username);  // Store username
-  window.location.href = 'mainpage.html'; // Redirect to main page
+    alert(data);  // Show message to user
+    localStorage.setItem('username', username);  // Store username
+    window.location.href = 'mainpage.html'; // Redirect to main page
   })
   .catch(err => {
     console.error('Signup error:', err);
