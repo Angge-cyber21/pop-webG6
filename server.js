@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,7 +9,7 @@ const cors = require('cors');
 app.use(cors({
   origin: 'https://angge-cyber21.github.io'
 }));
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 
