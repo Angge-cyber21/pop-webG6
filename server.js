@@ -7,7 +7,8 @@ const port = process.env.PORT || 3000;
 // Middleware
 const cors = require('cors');
 app.use(cors({
-  origin: 'https://angge-cyber21.github.io'
+  origin: 'https://angge-cyber21.github.io',
+  credentials: true
 }));
 app.use(bodyParser.json());
 app.use(express.json());
