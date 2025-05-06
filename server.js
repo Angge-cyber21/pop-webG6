@@ -13,7 +13,6 @@ app.use(cors({
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json());
 
 // MySQL connection
 const pool = mysql.createPool({
