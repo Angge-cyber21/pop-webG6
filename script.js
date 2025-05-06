@@ -65,7 +65,8 @@ document.getElementById('signupForm').addEventListener('submit', function(event)
         window.location.href = 'mainpage.html';
     })
     .catch(error => {
-        alert(error.message);
-        console.error('Signup Error:', error);
-    });
+    alert('Signup failed: ' + error.message);
+    console.error('Signup Error:', error);
+});
+
 });
