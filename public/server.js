@@ -11,6 +11,7 @@ const port = 5500;
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
+app.use(express.static('public'));
 
 // MySQL connection
 const db = mysql.createConnection({
