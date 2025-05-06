@@ -1,3 +1,4 @@
+console.log("Script loaded");
 // Toggle Login/Signup Views
 document.getElementById("showSignup").addEventListener("click", function(e) {
     e.preventDefault();
