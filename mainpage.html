@@ -12,6 +12,9 @@
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
             color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Top navigation bar */
@@ -156,20 +159,22 @@
         </div>
     </nav>
 
-    <section class="bottom-section">
-        <div class="option" onclick="window.location.href='table-reservation.html'">
-            <img src="https://restaurant.eatapp.co/hs-fs/hubfs/WordPress-Table-Reservation-plugin-1000x562-1.webp?width=660&height=370&name=WordPress-Table-Reservation-plugin-1000x562-1.webp" alt="Table Reservation" />
-            <p>Table Reservation</p>
-        </div>
-<div class="option" onclick="window.location.href='foods%20and%20drinks.html'">
-            <img src="https://thumbs.dreamstime.com/b/pre-order-food-line-icon-order-meal-sign-vector-pre-order-food-line-icon-order-meal-sign-restaurant-plate-fork-knife-symbol-179002895.jpg" alt="Pre-order Meal" />
-            <p>Pre-order Meal</p>
-        </div>
-        <div class="option" onclick="window.location.href='payment.html'">
-            <img src="https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-dribbble-pack1.png" alt="Payment Options" />
-            <p>Payment Options</p>
-        </div>
-    </section>
+    <main style="flex-grow: 1;">
+        <section class="bottom-section">
+            <div class="option" onclick="window.location.href='table-reservation.html'">
+                <img src="https://restaurant.eatapp.co/hs-fs/hubfs/WordPress-Table-Reservation-plugin-1000x562-1.webp?width=660&height=370&name=WordPress-Table-Reservation-plugin-1000x562-1.webp" alt="Table Reservation" />
+                <p>Table Reservation</p>
+            </div>
+            <div class="option" onclick="window.location.href='foods%20and%20drinks.html'">
+                <img src="https://thumbs.dreamstime.com/b/pre-order-food-line-icon-order-meal-sign-vector-pre-order-food-line-icon-order-meal-sign-restaurant-plate-fork-knife-symbol-179002895.jpg" alt="Pre-order Meal" />
+                <p>Pre-order Meal</p>
+            </div>
+            <div class="option" onclick="window.location.href='payment.html'">
+                <img src="https://swissuplabs.com/wordpress/wp-content/uploads/2016/04/free-icons-dribbble-pack1.png" alt="Payment Options" />
+                <p>Payment Options</p>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <p>&copy; 2025 PreOrder Pal. All rights reserved.</p>
