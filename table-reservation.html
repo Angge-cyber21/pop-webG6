@@ -12,6 +12,8 @@
             background-color: #f9f9f9;
             color: #333;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         header {
@@ -33,6 +35,7 @@
             gap: 20px;
             max-width: 400px;
             margin: 10vh auto 0 auto;
+            align-items: center;
         }
 
         .table-option {
@@ -125,7 +128,7 @@
         Choose Your Dining Location
     </header>
 
-    <section id="location-options">
+        <section id="location-options">
         <div class="table-option">
             <button>Table 1</button>
             <input type="date" aria-label="Select date for Table 1" />
@@ -148,50 +151,7 @@
                 <option value="outside">Outside</option>
             </select>
         </div>
-        <div class="table-option">
-            <button>Table 2</button>
-            <input type="date" aria-label="Select date for Table 2" />
-            <input type="time" aria-label="Select time for Table 2" />
-            <select aria-label="Number of people for Table 2">
-                <option value="1">1 person</option>
-                <option value="2">2 people</option>
-                <option value="3">3 people</option>
-                <option value="4">4 people</option>
-                <option value="5">5 people</option>
-                <option value="6">6 people</option>
-                <option value="7">7 people</option>
-                <option value="8">8 people</option>
-                <option value="9">9 people</option>
-                <option value="10">10 people</option>
-            </select>
-            <select aria-label="Select location for Table 2">
-                <option value="balcony">Balcony</option>
-                <option value="dining-room">Dining Room</option>
-                <option value="outside">Outside</option>
-            </select>
-        </div>
-        <div class="table-option">
-            <button>Table 3</button>
-            <input type="date" aria-label="Select date for Table 3" />
-            <input type="time" aria-label="Select time for Table 3" />
-            <select aria-label="Number of people for Table 3">
-                <option value="1">1 person</option>
-                <option value="2">2 people</option>
-                <option value="3">3 people</option>
-                <option value="4">4 people</option>
-                <option value="5">5 people</option>
-                <option value="6">6 people</option>
-                <option value="7">7 people</option>
-                <option value="8">8 people</option>
-                <option value="9">9 people</option>
-                <option value="10">10 people</option>
-            </select>
-            <select aria-label="Select location for Table 3">
-                <option value="balcony">Balcony</option>
-                <option value="dining-room">Dining Room</option>
-                <option value="outside">Outside</option>
-            </select>
-        </div>
+        <button id="add-table">Add Table</button>
         <button id="confirm" onclick="window.location.href='choosinglocation.html'">Confirm</button>
         <button id="go-back" onclick="window.location.href='mainpage.html'">Go Back</button>
     </section>
@@ -199,6 +159,41 @@
     <footer>
         <p>&copy; 2025 PreOrder Pal. All rights reserved.</p>
     </footer>
-</body>
+    <script>
+        document.getElementById('add-table').addEventListener('click', function () {
+            const locationOptions = document.getElementById('location-options');
+            const tableOptions = locationOptions.getElementsByClassName('table-option');
+            const lastTableOption = tableOptions[tableOptions.length - 1];
+            const newTableOption = lastTableOption.cloneNode(true);
 
+            // Update the button text and aria-labels for the new table option
+            const newIndex = tableOptions.length + 1;
+            const button = newTableOption.querySelector('button');
+            button.textContent = 'Table ' + newIndex;
+
+            const inputs = newTableOption.querySelectorAll('input');
+            inputs.forEach(input => {
+                if (input.type === 'date') {
+                    input.value = '';
+                    input.setAttribute('aria-label', 'Select date for Table ' + newIndex);
+                } else if (input.type === 'time') {
+                    input.value = '';
+                    input.setAttribute('aria-label', 'Select time for Table ' + newIndex);
+                }
+            });
+
+            const selects = newTableOption.querySelectorAll('select');
+            selects.forEach(select => {
+                select.selectedIndex = 0;
+                if (select.getAttribute('aria-label').includes('Number of people')) {
+                    select.setAttribute('aria-label', 'Number of people for Table ' + newIndex);
+                } else if (select.getAttribute('aria-label').includes('Select location')) {
+                    select.setAttribute('aria-label', 'Select location for Table ' + newIndex);
+                }
+            });
+
+            locationOptions.insertBefore(newTableOption, document.getElementById('add-table'));
+        });
+    </script>
+</body>
 </html>
